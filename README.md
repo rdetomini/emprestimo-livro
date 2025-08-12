@@ -43,10 +43,3 @@ O projeto utiliza **3 tabelas principais**:
 | `data_emprestimo` | DATE     | Data do empréstimo                 |
 | `data_devolucao` | DATE NULL | Data de devolução (se já devolvido) |
 
-<<<<<<< HEAD
----
-=======
----
-
-
->>>>>>> 1d4fa30f1ab10d82816ab06d1df76a9a2d764db3
