@@ -33,7 +33,6 @@ public class LivroController {
     @ResponseStatus(HttpStatus.CREATED)
     public ViewLivroModel salvar(@Valid @RequestBody CadastroLivroModel livroModel) {
         Livro livro = modelMapper.converter(livroModel, Livro.class);
-
         Livro livroEntity = livroService.salvar(livro);
         
         ViewLivroModel livroMapeado = modelMapper.converter(livroEntity, ViewLivroModel.class);
@@ -50,6 +49,7 @@ public class LivroController {
 
     @PutMapping()
     public ResponseEntity<ViewLivroModel> atualizar(@Valid @RequestBody AtualizaLivroModel livroModel) {
+        
         if(!livroService.getById(livroModel.getId()).isPresent()) {
             return ResponseEntity.notFound().build();
         }

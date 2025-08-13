@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class CadastroEmprestimoModel {
-    private Long id;
+    private Long livroId;
 }

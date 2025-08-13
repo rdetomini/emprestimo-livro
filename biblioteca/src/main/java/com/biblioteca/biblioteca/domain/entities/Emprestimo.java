@@ -10,16 +10,19 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Null;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "emprestimos")
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
+@Getter
+@Setter
 public class Emprestimo {
 
     @Id
@@ -30,7 +33,6 @@ public class Emprestimo {
     @NotNull
     private OffsetDateTime data_emprestimo;
 
-    @Null
     private OffsetDateTime data_devolucao;
 
     @NotNull
@@ -49,5 +51,16 @@ public class Emprestimo {
 
     public void cadastraDataEmprestimo() {
         this.data_emprestimo = OffsetDateTime.now();
+    }
+
+    public void inserirPessoaELivro(Long pessoaId, Long livroId) {
+        Livro livro = new Livro();
+        livro.setId(livroId);
+        Pessoa pessoa = new Pessoa();
+        pessoa.setId(pessoaId);
+
+        this.setLivro(livro);
+        this.setPessoa(pessoa);
+        this.cadastraDataEmprestimo();
     }
 }

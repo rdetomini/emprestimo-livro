@@ -1,5 +1,6 @@
 package com.biblioteca.biblioteca.api.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -39,8 +40,13 @@ public class EmprestimoController {
             return ResponseEntity.notFound().build();
         }
 
-        List<Emprestimo> emprestimos = modelMapper.converter(emprestimosModel, Emprestimo.class);
-        emprestimos.forEach(Emprestimo::cadastraDataEmprestimo);
+        List<Emprestimo> emprestimos = new ArrayList<Emprestimo>();
+
+        emprestimosModel.forEach(e -> {
+            Emprestimo emprestimo = new Emprestimo();
+            emprestimo.inserirPessoaELivro(pessoaId, e.getLivroId());
+            emprestimos.add(emprestimo);
+        });
 
         List<Emprestimo> emprestimosSalvo = emprestimoService.salvar(emprestimos);
 
@@ -52,7 +58,9 @@ public class EmprestimoController {
         if (!pessoaService.getById(pessoaId).isPresent()) {
             return ResponseEntity.notFound().build();
         }
-        List<Long> ids = modelMapper.converter(emprestimoModel, Long.class);
+        List<Long> ids = emprestimoModel.stream()
+                .map(AtualizaEmprestimoModel::getId)
+                .toList();
         List<Emprestimo> emprestimos = emprestimoService.getByIds(ids);
 
         emprestimos.forEach(e -> e.devolucao());
