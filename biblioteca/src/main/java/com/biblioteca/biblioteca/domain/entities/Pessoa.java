@@ -38,6 +38,6 @@ public class Pessoa {
     @NotNull
     private String email;
 
-    @OneToMany(mappedBy="emprestimo")
+    @OneToMany(mappedBy="pessoa")
     private List<Emprestimo> emprestimos;
 }

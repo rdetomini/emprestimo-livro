@@ -46,4 +46,8 @@ public class Emprestimo {
     public void devolucao() {
         this.data_devolucao = OffsetDateTime.now();
     }
+
+    public void cadastraDataEmprestimo() {
+        this.data_emprestimo = OffsetDateTime.now();
+    }
 }

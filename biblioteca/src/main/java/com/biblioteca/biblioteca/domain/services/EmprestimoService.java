@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 @Service
 @AllArgsConstructor
 public class EmprestimoService {
+
     private final EmprestimoRepository emprestimoRepository;
 
     @Transactional
@@ -24,4 +25,7 @@ public class EmprestimoService {
         return emprestimoRepository.findByPessoaId(pessoaId);
     }
 
+    public List<Emprestimo> getByIds(List<Long> ids) {
+        return emprestimoRepository.findAllById(ids);
+    }
 }

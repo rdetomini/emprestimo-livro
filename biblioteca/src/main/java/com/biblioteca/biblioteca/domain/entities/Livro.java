@@ -36,6 +36,6 @@ public class Livro {
     @NotNull
     private int ano_publicacao;
 
-    @OneToMany(mappedBy="emprestimo")
+    @OneToMany(mappedBy="livro")
     private List<Emprestimo> emprestimos;
 }

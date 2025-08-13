@@ -1,5 +1,6 @@
 package com.biblioteca.biblioteca.domain.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class PessoaService {
 
     public Optional<Pessoa> getById(long id) {
         return pessoaRepository.findById(id);
+    }
+
+    public List<Pessoa> getAll(){
+        return pessoaRepository.findAll();
     }
 }
